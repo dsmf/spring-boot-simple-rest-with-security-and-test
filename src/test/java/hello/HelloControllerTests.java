@@ -30,6 +30,13 @@ public class HelloControllerTests {
 	}
 	
 	@Test
+	@WithMockUser(roles = "ADMIN")
+	public void givenAdmin_whenAccessingAdminUrl_withoutNameParam_thenOkWithDefault() throws Exception {
+		mvc.perform(get("/admin")).andDo(print()).andExpect(status().isOk())
+				.andExpect(jsonPath("$.content").value("Hello admin foo"));
+	}
+	
+	@Test
 	@WithMockUser(roles = "USER")
 	public void givenUser_whenAccessingHelloUrl_thenOk() throws Exception {
 		mvc.perform(get("/hello").param("name", "bar")).andDo(print()).andExpect(status().isOk())

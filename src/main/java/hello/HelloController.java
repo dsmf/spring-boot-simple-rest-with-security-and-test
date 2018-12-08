@@ -11,12 +11,12 @@ public class HelloController {
 	private final AtomicLong counter = new AtomicLong();
 
 	@RequestMapping("/hello")
-	public Hello greeting(@RequestParam(value = "name") String name) {
+	public Hello greeting(@RequestParam(value = "name", defaultValue="world") String name) {
 		return new Hello(counter.incrementAndGet(), "Hello " + name);
 	}
 
 	@RequestMapping("/admin")
-	public Hello adminHello(@RequestParam(value = "name") String name) {
+	public Hello adminHello(@RequestParam(value = "name", defaultValue="foo") String name) {
 		return new Hello(counter.incrementAndGet(), "Hello admin " + name);
 	}
 }
