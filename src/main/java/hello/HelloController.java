@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    private final AtomicLong counter = new AtomicLong();
+	private final AtomicLong counter = new AtomicLong();
 
-    @RequestMapping("/hello")
-    public Hello greeting(@RequestParam(value="name") String name) {
-        return new Hello(counter.incrementAndGet(),
-                           "Hello " + name);
-    }
-    
-    @RequestMapping("/admin")
-    public Hello adminHello(@RequestParam(value="name") String name) {
-        return new Hello(counter.incrementAndGet(), "Hello admin " + name);
-    }
+	@RequestMapping("/hello")
+	public Hello greeting(@RequestParam(value = "name") String name) {
+		return new Hello(counter.incrementAndGet(), "Hello " + name);
+	}
+
+	@RequestMapping("/admin")
+	public Hello adminHello(@RequestParam(value = "name") String name) {
+		return new Hello(counter.incrementAndGet(), "Hello admin " + name);
+	}
 }
