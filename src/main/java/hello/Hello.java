@@ -2,19 +2,13 @@ package hello;
 
 public class Hello {
 
-    private final long id;
-    private final String content;
+    private final String message;
 
-    public Hello(long id, String content) {
-        this.id = id;
-        this.content = content;
+    public Hello(String message) {
+        this.message = message;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getContent() {
-        return content;
-    }
+    public String getMessage() {
+		return message;
+	}
 }

@@ -1,22 +1,20 @@
 package hello;
 
-import java.util.concurrent.atomic.AtomicLong;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-
-	private final AtomicLong counter = new AtomicLong();
+	
+	@Autowired
+	private MessageService messageService;
 
 	@RequestMapping("/hello")
-	public Hello greeting(@RequestParam(value = "name", defaultValue="world") String name) {
-		return new Hello(counter.incrementAndGet(), "Hello " + name);
+	public Hello getMessage(HttpServletRequest request) {
+		return new Hello(request.isUserInRole("ADMIN") ? messageService.getAdminMessage() : messageService.getMessage());
 	}
 
-	@RequestMapping("/admin")
-	public Hello adminHello(@RequestParam(value = "name", defaultValue="foo") String name) {
-		return new Hello(counter.incrementAndGet(), "Hello admin " + name);
-	}
 }
