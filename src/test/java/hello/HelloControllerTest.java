@@ -35,10 +35,10 @@ public class HelloControllerTest {
 	@Before
 	public void before() {
 
-		when(restTemplate.getForEntity(contains("external-admin-message-service"), any()))
+		when(restTemplate.getForEntity(contains("/admin/message"), any()))
 				.thenReturn(ResponseEntity.ok().body("Hello admin"));
 
-		when(restTemplate.getForEntity(contains("external-user-message-service"), any()))
+		when(restTemplate.getForEntity(contains("/user/message"), any()))
 				.thenReturn(ResponseEntity.ok().body("Hello user"));
 	}
 

@@ -18,13 +18,13 @@ public class MessageService implements MessageServiceInterface {
 
 	@Override
 	public String getAdminMessage() {
-		ResponseEntity<String> response = restTemplate.getForEntity("https://external-admin-message-service-url", String.class);
+		ResponseEntity<String> response = restTemplate.getForEntity("https://example.com/admin/message", String.class);
 		return response.getBody();
 	}
 
 	@Override
 	public String getMessage() {
-		ResponseEntity<String> response = restTemplate.getForEntity("https://external-user-message-service-url", String.class);
+		ResponseEntity<String> response = restTemplate.getForEntity("https://example.com/user/message", String.class);
 		return response.getBody();
 	}
 
